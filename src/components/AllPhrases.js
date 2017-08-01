@@ -27,7 +27,7 @@ class AllPhrases extends React.Component {
 
 export default createFragmentContainer(AllPhrases, graphql`
   fragment AllPhrases_viewer on Viewer {
-    allPhrases(first:500) @connection(key: "Phrases_allPhrases", filters:["first"]){
+    allPhrases(first:500){
       edges{
         node{
           ...Phrase_phrase
