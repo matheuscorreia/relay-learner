@@ -2,6 +2,8 @@ import React from 'react'
 import CreateUserMutation from '../mutations/CreateUserMutation'
 import { withRouter } from 'react-router-dom'
 
+import { Form, Grid } from 'semantic-ui-react'
+
 class SignupLogin extends React.Component {
 
   state = {
@@ -37,14 +39,33 @@ class SignupLogin extends React.Component {
 
   render(){
     return (
-      <div>
-        <p>Type your nickname:</p>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="nickname"/>
-          <button type="submit" disabled={this.state.isSending}>Enviar</button>
-        </form>
+      <div style={styles.middleOfPage}>
+        <Grid centered style={styles.grid}>
+          <Grid.Column mobile='12' largeScreen='6'>
+            <Form loading={this.state.isSending} onSubmit={this.handleSubmit} >
+              <Form.Input label="Nickname" type="text" name="nickname"/>
+              <Form.Button basic compact fluid type="submit">
+                <i className="material-icons">arrow_forward</i>
+              </Form.Button>
+            </Form>
+          </Grid.Column>
+        </Grid>
       </div>
     )
+  }
+}
+
+const styles = {
+  'middleOfPage': {
+    'position': 'absolute',
+    'width': '100%',
+    'height': '100%',
+    'display': 'flex',
+    'justifyContent': 'center',
+    'alignItems': 'center',
+  },
+  'grid': {
+    'width': '100%',
   }
 }
 

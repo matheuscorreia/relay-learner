@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Nav from '../components/Nav'
+import { Grid, Form } from 'semantic-ui-react'
 
 import CreatePhraseMutation from '../mutations/CreatePhraseMutation'
 
@@ -21,10 +22,16 @@ class SaySomething extends Component {
     return (
       <div>
         <Nav />
-        <form onSubmit={this.handleSubmit}>
-          <textarea type="text" name="phrase"/>
-          <button type="submit" disabled={this.state.isSending}>Enviar</button>
-        </form>
+        <Grid centered >
+          <Grid.Column mobile='12' largeScreen='6'>
+            <Form loading={this.state.isSending} onSubmit={this.handleSubmit}>
+              <Form.TextArea />
+              <Form.Button fluid type="submit">
+                Send
+              </Form.Button>
+            </Form>
+          </Grid.Column>
+        </Grid>
       </div>
     )
   }

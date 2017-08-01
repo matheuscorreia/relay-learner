@@ -32,12 +32,6 @@ export default (userId, text, callback) => {
     {
       mutation,
       variables,
-      optimisticUpdater: (proxyStore) => {
-        console.log("I think this is gonna happen", proxyStore)
-      },
-      updater: (proxyStore) => {
-        console.log("this happened")
-      },
       onCompleted: (response) => {
         callback(response)
       },

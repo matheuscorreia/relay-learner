@@ -4,7 +4,11 @@ import {
   graphql,
 } from 'react-relay'
 
+import { Card, Button } from 'semantic-ui-react'
+
 import DeletePhraseMutation from '../mutations/DeletePhraseMutation'
+
+const moment = require('moment')
 
 class Phrase extends React.Component {
 
@@ -17,18 +21,28 @@ class Phrase extends React.Component {
   handleDelete = () => {
     this.changeClassName()
     setTimeout(() => {
-      DeletePhraseMutation(this.props.phrase.id, this.props.phrase.user.id)
       this.changeClassName('')
+      DeletePhraseMutation(this.props.phrase.id, this.props.phrase.user.id)
     }, 500)
   }
 
   render() {
+    const createdAt = moment(this.props.phrase.createdAt)
     return (
-      <li className={this.state.className}>
-        <h3>{this.props.phrase.text}</h3>
-        <h2>{this.props.phrase.user.nickname}</h2>
-        {this.props.canDelete ? <button type="button" onClick={this.handleDelete}>Deletar</button> : null}
-      </li>
+      <Card fluid raised className={this.state.className}>
+        <Card.Content>
+          <Card.Header style={{'wordWrap': 'break-word'}}>
+            {this.props.phrase.text}
+          </Card.Header>
+          <Card.Meta>
+            {createdAt.format('lll')}
+          </Card.Meta>
+          <Card.Description >
+            {this.props.phrase.user.nickname}
+          </Card.Description>
+          {this.props.canDelete ? <Button secondary style={{'float':'right'}} type="button" onClick={this.handleDelete}>Delete</Button> : null}
+        </Card.Content>
+      </Card>
     )
   }
 

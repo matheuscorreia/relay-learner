@@ -7,6 +7,7 @@ import environment from '../config/relay.enviroment'
 
 import MyPhrases from '../components/MyPhrases'
 import Nav from '../components/Nav'
+import Loading from '../components/Loading'
 
 const YouSaidQuery = graphql`
   query YouSaidQuery($userId: ID!){
@@ -33,7 +34,7 @@ class YouSaid extends Component {
             } else if (props) {
               return <MyPhrases user={props.viewer.User}/>
             }
-            return <div>Loading</div>
+            return <Loading isActive={true} />
           }} />
       </div>
     )

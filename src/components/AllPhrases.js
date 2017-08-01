@@ -5,19 +5,20 @@ import {
 } from 'react-relay'
 
 import Phrase from './Phrase'
+import { Card } from 'semantic-ui-react'
 
 class AllPhrases extends React.Component {
 
   render() {
     return (
-      <ul>
+      <Card.Group itemsPerRow="1" style={{'padding': '0 15px'}}>
         {this.props.viewer.allPhrases.edges.map(({ node }, i) => (
           <Phrase
             phrase={node}
             key={i}
           />
         ))}
-      </ul>
+      </Card.Group>
 
     )
   }

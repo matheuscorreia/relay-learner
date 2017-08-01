@@ -7,6 +7,7 @@ import environment from '../config/relay.enviroment'
 
 import Nav from '../components/Nav'
 import AllPhrases from '../components/AllPhrases'
+import Loading from '../components/Loading'
 
 const PeopleSaidQuery = graphql`
   query PeopleSaidQuery{
@@ -27,11 +28,11 @@ class PeopleSaid extends Component {
           query={PeopleSaidQuery}
           render={({error, props}) => {
             if (error) {
-              return <div>{error.message}</div>
+              return <div></div>
             } else if (props) {
               return <AllPhrases viewer={props.viewer} />
             }
-            return <div>Loading</div>
+            return <Loading isActive={true} />
           }} />
       </div>
 

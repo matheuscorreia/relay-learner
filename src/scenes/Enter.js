@@ -4,7 +4,9 @@ import {
   graphql,
 } from 'react-relay'
 import environment from '../config/relay.enviroment'
+
 import SignupLogin from '../components/SignupLogin'
+import Loading from '../components/Loading'
 
 const EnterUsersQuery = graphql`
   query EnterQuery{
@@ -31,7 +33,7 @@ const Enter = (props) => {
         else if(props){
           return <SignupLogin {...props.viewer.allUsers} />
         }
-        return <div>Loading...</div>
+        return <Loading isActive={true} />
       }}
     />
   )
