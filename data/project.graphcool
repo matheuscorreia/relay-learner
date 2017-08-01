@@ -1,0 +1,29 @@
+# project: cj5r0cslosr2n01606n0de4u0
+# version: 2
+
+type Phrase implements Node {
+  text: String!
+  user: User! @relation(name: "UserOnPhrase")
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
+
+type User implements Node {
+  id: ID! @isUnique
+  nickname: String!
+  phrases: [Phrase!]! @relation(name: "UserOnPhrase")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}

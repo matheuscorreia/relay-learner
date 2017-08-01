@@ -1,0 +1,10 @@
+type Phrase {
+  text: String!
+  user: User! @relation(name: "UserOnPhrase")
+}
+
+type User {
+  id: ID!
+  nickname: String!
+  phrases: [Phrase]! @relation(name: "UserOnPhrase")
+}
